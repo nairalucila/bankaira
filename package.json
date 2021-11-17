@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/nairalucila/bankaira/issues"
   },
-  "homepage": "https://github.com/nairalucila/bankaira#readme"
+  "homepage": "https://github.com/nairalucila/bankaira#readme",
+  "dependencies": {
+    "typescript": "^4.4.4"
+  }
 }

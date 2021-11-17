@@ -11,20 +11,65 @@
  * op 3- ver saldo disponible, va a ser siempre un monto x si retiras plata lo va restando
  * 
  */
+class User implements Account {
+    key: number;
+    amount: number;
+    movements: number;
+   
+    constructor(key: number) {
+        this.key = key;
+        this.movements = 0;
+        this.amount = 10000;
+    }
 
-import {User, Account} from './Class/classes';
+}
+interface Account {
+    movements?: number;
+}
 
 function main (){
-    const user = new User(5544, 10000);
-    seeAvailableBalance(user);
+    const user = new User(5544);
+    //FALTAN LAS OPCIONES
+    withdrawMoney(2000, user) //-> VER QUE INGRESE EL USUARIO EL DATO
+    console.log(user);
+
+  //  seeAvailableBalance(user);
 }
 
 function seeAvailableBalance(user){
-console.log(user)
+    console.log(user.amount);
 }
 
-function retirarDinero(money: number){
-console.log(money);
+// //cambiar nombre funcion
+// function ingressBox(){
+
+// }
+
+
+
+//cambiar nombre funcion
+function withdrawMoney(money: number, user: User){
+    if(user.amount != 0){
+
+        if(user.amount < money){
+            console.log("No tiene saldo suficiente", `Su saldo actual es de ${user.amount}`);
+        } else {
+
+            let extraction = user.amount - money; // = 8000
+            user.amount = user.amount - money;
+            user.movements = money;
+
+            console.log("Extracción exitosa", money);
+            console.log(user.amount);
+            
+            return user;
+        }
+
+    } else {
+        console.log("No tiene saldo suficiente")
+
+    }
+
 }
 
 main();
