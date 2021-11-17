@@ -12,4 +12,20 @@
  * 
  */
 
+import {User, Account} from './Class/classes';
+
+function main (){
+    const user = new User(5544, 10000);
+    seeAvailableBalance(user);
+}
+
+function seeAvailableBalance(user){
+console.log(user)
+}
+
+function retirarDinero(money: number){
+console.log(money);
+}
+
+main();
 
