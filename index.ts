@@ -1,17 +1,3 @@
-/***
- * SIMULADOR CAJERO AUT BANCO
- * 
- * recibe una clave yse la asigna a un usuario X
- * se listan opciones
- * 
- * op 1-ingresar monto - si es mayor a 5000 no te deja, si es menor si y se retira. msj de saludo
- * 
- * op 2- cambiar clave
- * 
- * op 3- ver saldo disponible, va a ser siempre un monto x si retiras plata lo va restando
- * 
- */
-
 class User implements Account {
     key: number;
     amount: number;
@@ -27,21 +13,11 @@ interface Account {
     movements?: number[];
 };
 
-interface Options {
-    optionOne: string,
-    optionTwo: string,
-}
-
-let optionsATM: Options = {
-    optionOne: "Retirar Dinero",
-    optionTwo: "Ver Saldo disponible",
-}
-
 
 function main() {
     const user = new User(5544);
     
-    withdrawMoney(5000, user)
+    withdrawMoney(2000, user)
     seeAvailableBalance(user);
 }
 
@@ -59,8 +35,7 @@ function withdrawMoney(money: number, user: User): User {
             user.amount = user.amount - money;
             user.movements.push(money);
 
-            // imprimir en forma de lista
-            console.log("Extracción exitosa", money + "\n" + "Último movimiento", user.movements);
+            console.log("Extracción exitosa", money);
             return user;
         }
 
