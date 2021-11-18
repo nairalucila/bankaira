@@ -14,36 +14,36 @@
 var User = /** @class */ (function () {
     function User(key) {
         this.key = key;
-        this.movements = 0;
+        this.movements = [0];
         this.amount = 10000;
     }
     return User;
 }());
+;
+var optionsATM = {
+    optionOne: "Retirar Dinero",
+    optionTwo: "Ver Saldo disponible"
+};
 function main() {
     var user = new User(5544);
-    //FALTAN LAS OPCIONES
-    withdrawMoney(2000, user); //-> VER QUE INGRESE EL USUARIO EL DATO
-    console.log(user);
-    //  seeAvailableBalance(user);
+    // const dat = getStdin.buffer();
+    withdrawMoney(5000, user);
+    seeAvailableBalance(user);
 }
 function seeAvailableBalance(user) {
-    console.log(user.amount);
+    console.log("Movimientos", user.movements + "\n" + "Saldo disponible:" + user.amount);
 }
-// //cambiar nombre funcion
-// function ingressBox(){
-// }
-//cambiar nombre funcion
 function withdrawMoney(money, user) {
     if (user.amount != 0) {
         if (user.amount < money) {
-            console.log("No tiene saldo suficiente", "Su saldo actual es de " + user.amount);
+            console.log("No tiene saldo suficiente" + "\n" + ("Su saldo actual es de " + user.amount));
         }
         else {
-            var extraction = user.amount - money; // = 8000
+            user.amount - money;
             user.amount = user.amount - money;
-            user.movements = money;
-            console.log("Extracción exitosa", money);
-            console.log(user.amount);
+            user.movements.push(money);
+            // imprimir en forma de lista
+            console.log("Extracción exitosa", money + "\n" + "Último movimiento", user.movements);
             return user;
         }
     }

@@ -11,57 +11,56 @@
  * op 3- ver saldo disponible, va a ser siempre un monto x si retiras plata lo va restando
  * 
  */
+
 class User implements Account {
     key: number;
     amount: number;
-    movements: number;
-   
+    movements: number[];
+
     constructor(key: number) {
         this.key = key;
-        this.movements = 0;
+        this.movements = [0];
         this.amount = 10000;
     }
-
 }
 interface Account {
-    movements?: number;
+    movements?: number[];
+};
+
+interface Options {
+    optionOne: string,
+    optionTwo: string,
 }
 
-function main (){
+let optionsATM: Options = {
+    optionOne: "Retirar Dinero",
+    optionTwo: "Ver Saldo disponible",
+}
+
+
+function main() {
     const user = new User(5544);
-    //FALTAN LAS OPCIONES
-    withdrawMoney(2000, user) //-> VER QUE INGRESE EL USUARIO EL DATO
-    console.log(user);
-
-  //  seeAvailableBalance(user);
+    
+    withdrawMoney(5000, user)
+    seeAvailableBalance(user);
 }
 
-function seeAvailableBalance(user){
-    console.log(user.amount);
+function seeAvailableBalance(user) {
+    console.log("Movimientos", user.movements + "\n" + "Saldo disponible:" + user.amount );
 }
 
-// //cambiar nombre funcion
-// function ingressBox(){
+function withdrawMoney(money: number, user: User): User {
+    if (user.amount != 0) {
 
-// }
-
-
-
-//cambiar nombre funcion
-function withdrawMoney(money: number, user: User){
-    if(user.amount != 0){
-
-        if(user.amount < money){
-            console.log("No tiene saldo suficiente", `Su saldo actual es de ${user.amount}`);
+        if (user.amount < money) {
+            console.log("No tiene saldo suficiente" + "\n" + `Su saldo actual es de ${user.amount}`);
         } else {
-
-            let extraction = user.amount - money; // = 8000
+            user.amount - money;
             user.amount = user.amount - money;
-            user.movements = money;
+            user.movements.push(money);
 
-            console.log("Extracción exitosa", money);
-            console.log(user.amount);
-            
+            // imprimir en forma de lista
+            console.log("Extracción exitosa", money + "\n" + "Último movimiento", user.movements);
             return user;
         }
 
